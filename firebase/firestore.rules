@@ -1,0 +1,83 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Hồ sơ người dùng — chỉ chủ tài khoản đọc/ghi
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // Mã xác thực giáo viên — kiểu cũ (1 mã duy nhất, giữ để tương thích ngược).
+    // Ghi: chỉ cần đã đăng nhập (kể cả ẩn danh — admin.html dùng đăng nhập ẩn danh sau khi
+    // qua được lớp mật khẩu ở phía client). LƯU Ý: đây KHÔNG phải bảo mật thật — mật khẩu
+    // nằm trong mã nguồn client (site tĩnh), ai đọc được JS và tự gọi Firebase SDK vẫn ghi
+    // được thẳng vào đây mà không cần qua form. Chỉ nên coi là khoá chống lỡ tay/tò mò.
+    match /config/{doc} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+    }
+
+    // Nhiều mã xác thực giáo viên cùng hiệu lực (mỗi document = 1 mã, có thể gắn nhãn
+    // trường/lớp riêng) — quản lý qua admin.html. Cùng mức bảo vệ như config/ ở trên.
+    match /teacherAccessCodes/{codeId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+    }
+
+    // Lớp học — giáo viên tạo/sửa lớp của mình; học sinh cần đọc để tra mã tham gia
+    match /classes/{classId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null && request.resource.data.teacherId == request.auth.uid;
+      allow update, delete: if request.auth != null && resource.data.teacherId == request.auth.uid;
+
+      // Bản tóm tắt tiến trình học sinh — học sinh tự ghi, giáo viên chủ lớp được đọc
+      match /students/{studentUid} {
+        allow read: if request.auth != null && (
+          request.auth.uid == studentUid ||
+          request.auth.uid == get(/databases/$(database)/documents/classes/$(classId)).data.teacherId
+        );
+        allow write: if request.auth != null && request.auth.uid == studentUid;
+      }
+    }
+
+    // Dữ liệu sử dụng video ngắn (ghi bởi tiện ích trình duyệt) — chỉ chủ tài khoản
+    match /usageData/{uid}/daily/{date} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // Tự đánh giá
+    match /assessments/{uid}/entries/{entryId} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // Kế hoạch cá nhân
+    match /plans/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // Phiên tập trung
+    match /focusSessions/{uid}/entries/{entryId} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // Nhật ký
+    match /journals/{uid}/entries/{entryId} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // Lịch sử hội thoại với Trợ lý AI giờ nằm ở Realtime Database
+    // (xem firebase/database.rules.json) — không còn ở Firestore.
+
+    // Trạng thái "trực tiếp" do tiện ích trình duyệt ghi mỗi phút — cho biết
+    // học sinh đang ở trang giải trí (kèm nền tảng) hay trang khác, KHÔNG lưu
+    // URL cụ thể của các trang không phải giải trí (để bảo vệ quyền riêng tư).
+    match /liveStatus/{uid} {
+      allow read: if request.auth != null && (
+        request.auth.uid == uid ||
+        (resource != null && resource.data.classId != null &&
+         get(/databases/$(database)/documents/classes/$(resource.data.classId)).data.teacherId == request.auth.uid)
+      );
+      allow write: if request.auth != null && request.auth.uid == uid;
+    }
+  }
+}

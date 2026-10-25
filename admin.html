@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mindguard — Quản trị</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="login-screen">
+  <div class="card login-card" id="adminCard" style="max-width:480px;">
+
+    <!-- Trạng thái: nhập mật khẩu -->
+    <div id="passwordState">
+      <div class="login-mark"><span></span></div>
+      <h1>Mindguard — Quản trị</h1>
+      <p class="section-gap">Nhập mật khẩu quản trị để tiếp tục.</p>
+
+      <form id="passwordForm">
+        <div class="field section-gap">
+          <label for="adminPassword">Mật khẩu</label>
+          <input type="password" id="adminPassword" placeholder="••••••••" autocomplete="off" required autofocus>
+        </div>
+        <button type="submit" class="auth-submit-btn" id="unlockBtn">Vào trang quản trị</button>
+        <p class="auth-error" id="passwordError"></p>
+      </form>
+    </div>
+
+    <!-- Trạng thái: đã xác thực, hiển thị công cụ quản trị -->
+    <div id="adminState" style="display:none;">
+      <div class="login-mark"><span></span></div>
+      <h1>Mindguard — Quản trị</h1>
+      <p class="section-gap">Danh sách mã xác thực giáo viên — mỗi mã có thể gắn nhãn riêng (VD: tên trường/lớp) và đều dùng đăng ký được cùng lúc. Xoá một mã sẽ khiến mã đó không đăng ký được nữa (không ảnh hưởng giáo viên đã đăng ký trước đó).</p>
+
+      <div class="field section-gap">
+        <label>Các mã đang hiệu lực</label>
+        <div id="codesList"><p class="muted">Đang tải…</p></div>
+      </div>
+
+      <div class="field section-gap" id="legacyCodeBlock" style="display:none;">
+        <label>Mã kiểu cũ (đặt thủ công qua Firebase Console, vẫn còn hiệu lực)</label>
+        <div class="admin-code-row">
+          <code id="legacyCode">—</code>
+          <button type="button" class="btn btn-ghost btn-sm admin-danger-btn" id="deleteLegacyBtn">Xoá</button>
+        </div>
+      </div>
+
+      <form id="addForm">
+        <div class="field section-gap">
+          <label for="newLabel">Nhãn (tuỳ chọn — VD: Trường A, Lớp 10A1)</label>
+          <input type="text" id="newLabel" placeholder="Để trống nếu không cần phân biệt" autocomplete="off">
+        </div>
+        <div class="field section-gap">
+          <label for="newCode">Mã mới</label>
+          <input type="text" id="newCode" placeholder="VD: GV2026-MINDGUARD" autocomplete="off" required minlength="4">
+        </div>
+
+        <div class="auth-link-row" style="justify-content:flex-start;gap:10px;">
+          <button type="button" class="btn btn-ghost btn-sm" id="genCodeBtn">Tạo ngẫu nhiên</button>
+        </div>
+
+        <button type="submit" class="auth-submit-btn section-gap" id="addBtn">Thêm mã</button>
+        <p class="auth-error" id="adminError"></p>
+        <p class="auth-ok" id="adminOk"></p>
+      </form>
+
+      <div class="auth-link-row">
+        <button type="button" id="lockBtn">Khoá lại trang</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script type="module" src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mindguard — Đăng nhập</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="login-screen">
+  <div class="card login-card">
+    <div class="login-mark"><span></span></div>
+    <h1>Mindguard</h1>
+    <p class="section-gap">Nền tảng phòng ngừa &amp; phục hồi khả năng tập trung khỏi thói quen xem video ngắn.</p>
+
+    <div class="auth-tab" id="authTab">
+      <button type="button" class="active" data-mode="login">Đăng nhập</button>
+      <button type="button" data-mode="register">Đăng ký</button>
+    </div>
+
+    <form id="authForm">
+      <div class="role-toggle" id="roleToggle">
+        <button type="button" class="active" data-role="student">Tôi là học sinh</button>
+        <button type="button" data-role="teacher">Tôi là giáo viên</button>
+      </div>
+
+      <div class="field section-gap" id="displayNameField">
+        <label for="displayName">Tên hiển thị</label>
+        <input type="text" id="displayName" placeholder="VD: Nguyễn Văn A" autocomplete="name">
+      </div>
+
+      <div class="field section-gap">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="ban@email.com" autocomplete="email" required>
+      </div>
+
+      <div class="field section-gap">
+        <label for="password">Mật khẩu</label>
+        <input type="password" id="password" placeholder="Ít nhất 6 ký tự" autocomplete="current-password" required minlength="6">
+      </div>
+
+      <div class="field section-gap" id="studentJoinField">
+        <label for="joinCode">Mã lớp (nếu giáo viên đã cung cấp — có thể bỏ trống)</label>
+        <input type="text" id="joinCode" placeholder="VD: 7K2M9P" autocomplete="off">
+      </div>
+
+      <div class="field section-gap" id="teacherCodeField" style="display:none;">
+        <label for="teacherCode">Mã xác thực giáo viên</label>
+        <input type="text" id="teacherCode" placeholder="Liên hệ quản trị hệ thống để lấy mã" autocomplete="off">
+      </div>
+
+      <button type="submit" class="auth-submit-btn" id="submitBtn">Đăng nhập</button>
+      <div class="auth-link-row">
+        <button type="button" id="forgotPasswordBtn">Quên mật khẩu?</button>
+      </div>
+      <p class="auth-error" id="authError"></p>
+    </form>
+
+    <p class="muted section-gap">Bằng việc đăng nhập, bạn đồng ý cho Mindguard lưu dữ liệu tự đánh giá, nhật ký và (nếu cài tiện ích trình duyệt) thời gian xem video ngắn để phục vụ theo dõi tiến bộ cá nhân và nghiên cứu giáo dục. Dữ liệu không được dùng cho mục đích chẩn đoán y khoa.</p>
+  </div>
+</div>
+
+<script type="module" src="js/login.js"></script>
+</body>
+</html>

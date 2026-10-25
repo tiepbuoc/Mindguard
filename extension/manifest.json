@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "Mindguard Tracker",
+  "version": "1.0.0",
+  "description": "Tự động ghi nhận thời gian xem video ngắn (sau khi đăng nhập và đồng ý) để đồng bộ với nền tảng Mindguard.",
+  "permissions": ["storage", "tabs", "idle", "alarms"],
+  "host_permissions": [
+    "https://securetoken.googleapis.com/*",
+    "https://firestore.googleapis.com/*",
+    "https://identitytoolkit.googleapis.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.youtube.com/shorts/*",
+        "https://m.youtube.com/shorts/*",
+        "https://www.tiktok.com/*",
+        "https://vm.tiktok.com/*",
+        "https://www.instagram.com/reel/*",
+        "https://www.instagram.com/reels/*",
+        "https://www.instagram.com/stories/*",
+        "https://www.facebook.com/reel/*",
+        "https://www.facebook.com/watch/*",
+        "https://m.facebook.com/reel/*",
+        "https://m.facebook.com/watch*"
+      ],
+      "js": ["content-overlay.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
