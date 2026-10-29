@@ -1,24 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root{
-  --bg:#EEF1F8;
+  --bg:#EEF1FA;
   --surface:#FFFFFF;
-  --ink:#111A36;            /* midnight navy */
-  --ink-soft:#586180;
-  --line:#DAE0EE;
-  --accent:#22C3D6;         /* cyan tín hiệu — nút nhấn, điểm sáng trên nền tối */
-  --accent-ink:#0B6C79;     /* cyan đậm cho chữ trên nền sáng */
-  --focus:#3347C9;          /* sapphire — màu chủ đạo của Mindguard */
-  --focus-hover:#2638A8;
-  --focus-soft:#E6EAFB;
-  --risk:#C2453A;
-  --risk-soft:#FBE7E4;
-  --warn:#B7791F;
-  --warn-soft:#FCF0DA;
-  --radius-s:10px;
-  --radius-m:16px;
-  --radius-l:24px;
-  --shadow: 0 1px 2px rgba(17,26,54,0.05), 0 8px 24px rgba(17,26,54,0.06);
+  --ink:#121A3B;
+  --ink-soft:#4B5576;
+  --line:#E1E5F2;
+  --accent:#22C3DB;
+  --accent-ink:#0E7A8C;
+  --focus:#3846D4;
+  --focus-soft:#E3E8FB;
+  --risk:#D6455D;
+  --risk-soft:#FBE5E9;
+  --radius-s:8px;
+  --radius-m:14px;
+  --radius-l:22px;
+  --shadow: 0 1px 2px rgba(18,26,59,0.06), 0 8px 24px rgba(18,26,59,0.05);
 }
 
 *{box-sizing:border-box;}
@@ -27,13 +24,12 @@ body{
   margin:0;
   background:var(--bg);
   color:var(--ink);
-  font-family:'Be Vietnam Pro',sans-serif;
-  font-size:15px;
+  font-family:'Plus Jakarta Sans',sans-serif;
   -webkit-font-smoothing:antialiased;
 }
 h1,h2,h3,.headline{
-  font-family:'Bricolage Grotesque','Be Vietnam Pro',sans-serif;
-  font-weight:600;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:700;
   letter-spacing:-0.02em;
   margin:0;
 }
@@ -45,15 +41,14 @@ button{font-family:inherit;}
 /* ---------- Buttons ---------- */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  border:none;border-radius:12px;
+  border:none;border-radius:999px;
   padding:12px 22px;
   font-size:0.95rem;font-weight:600;
-  cursor:pointer;transition:transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+  cursor:pointer;transition:transform .12s ease, box-shadow .12s ease;
 }
-a.btn{text-decoration:none;}
 .btn:active{transform:scale(0.97);}
-.btn-primary{background:var(--focus);color:#fff;}
-.btn-primary:hover{background:var(--focus-hover);box-shadow:var(--shadow);}
+.btn-primary{background:var(--ink);color:#fff;}
+.btn-primary:hover{box-shadow:var(--shadow);}
 .btn-accent{background:var(--accent);color:var(--ink);}
 .btn-accent:hover{box-shadow:var(--shadow);}
 .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line);}
@@ -66,8 +61,7 @@ a.btn{text-decoration:none;}
   background:var(--surface);
   border-radius:var(--radius-m);
   padding:22px;
-  border:1px solid var(--line);
-  box-shadow:0 1px 2px rgba(17,26,54,0.04);
+  box-shadow:var(--shadow);
 }
 
 /* ---------- App shell ---------- */
@@ -83,23 +77,22 @@ a.btn{text-decoration:none;}
 .brand{display:flex;align-items:center;gap:10px;}
 .sidebar-close-btn{display:none;margin-left:auto;}
 .brand-mark{
-  width:32px;height:36px;flex-shrink:0;
+  width:32px;height:38px;
   background:var(--focus);
-  clip-path:polygon(50% 0%,94% 13%,94% 56%,50% 100%,6% 56%,6% 13%);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 38'%3E%3Cpath d='M16 1 29 5.5Q30 6 30 7.5V18C30 27 24.5 33.5 16 37 7.5 33.5 2 27 2 18V7.5Q2 6 3 5.5Z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 38'%3E%3Cpath d='M16 1 29 5.5Q30 6 30 7.5V18C30 27 24.5 33.5 16 37 7.5 33.5 2 27 2 18V7.5Q2 6 3 5.5Z'/%3E%3C/svg%3E") center/contain no-repeat;
   display:flex;align-items:center;justify-content:center;
 }
-.brand-mark span{width:11px;height:11px;border-radius:50%;background:var(--accent);margin-bottom:4px;}
-.brand-name{font-family:'Bricolage Grotesque','Be Vietnam Pro',sans-serif;font-size:1.2rem;font-weight:700;letter-spacing:-0.02em;}
+.brand-mark span{width:13px;height:13px;border-radius:50%;background:var(--accent);margin-top:-4px;}
+.brand-name{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.3rem;font-weight:800;letter-spacing:-0.02em;}
 .nav{display:flex;flex-direction:column;gap:4px;}
 .nav-item{
   display:flex;align-items:center;gap:12px;
   padding:11px 12px;border-radius:var(--radius-s);
   color:var(--ink-soft);text-decoration:none;font-weight:600;font-size:0.92rem;
-  cursor:pointer;border:none;background:none;text-align:left;width:100%;position:relative;
+  cursor:pointer;border:none;background:none;text-align:left;width:100%;
 }
 .nav-item:hover{background:var(--bg);}
 .nav-item.active{background:var(--focus-soft);color:var(--focus);}
-.nav-item.active::before{content:"";position:absolute;left:-18px;top:8px;bottom:8px;width:4px;border-radius:0 4px 4px 0;background:var(--focus);}
 .nav-icon{width:18px;text-align:center;}
 .sidebar-footer{margin-top:auto;display:flex;flex-direction:column;gap:10px;}
 .user-chip{display:flex;align-items:center;gap:10px;font-size:0.85rem;color:var(--ink-soft);}
@@ -126,8 +119,8 @@ a.btn{text-decoration:none;}
     padding:0 14px;padding-top:env(safe-area-inset-top);
   }
   .mobile-topbar .brand{display:flex;align-items:center;gap:8px;}
-  .mobile-topbar .brand-mark{width:24px;height:27px;}
-  .mobile-topbar .brand-mark span{width:8px;height:8px;margin-bottom:3px;}
+  .mobile-topbar .brand-mark{width:24px;height:28px;}
+  .mobile-topbar .brand-mark span{width:10px;height:10px;margin-top:-3px;}
   .mobile-topbar .brand-name{font-size:1rem;}
   .sidebar-toggle-btn{
     width:38px;height:38px;flex-shrink:0;border-radius:10px;border:1px solid var(--line);
@@ -142,12 +135,12 @@ a.btn{text-decoration:none;}
     position:fixed;top:0;left:0;bottom:0;width:250px;height:100%;
     z-index:40;transform:translateX(-100%);transition:transform .25s ease;
   }
-  .sidebar.open{transform:translateX(0);box-shadow:16px 0 32px rgba(17,26,54,0.18);}
+  .sidebar.open{transform:translateX(0);box-shadow:16px 0 32px rgba(18,26,59,0.18);}
   .sidebar-close-btn{display:flex;}
 
   .sidebar-backdrop{
     display:block;position:fixed;inset:0;z-index:35;
-    background:rgba(17,26,54,0.35);opacity:0;pointer-events:none;
+    background:rgba(18,26,59,0.35);opacity:0;pointer-events:none;
     transition:opacity .2s ease;
   }
   .sidebar-backdrop.show{opacity:1;pointer-events:auto;}
@@ -168,19 +161,17 @@ a.btn{text-decoration:none;}
 
 /* ---------- Today screen ---------- */
 .today-hero{
-  background:var(--ink) url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 112%27%3E%3Cpath d=%27M50 4 L92 18 V58 C92 82 70 100 50 108 C30 100 8 82 8 58 V18 Z%27 fill=%27none%27 stroke=%27white%27 stroke-opacity=%270.09%27 stroke-width=%273%27/%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2712%27 fill=%27none%27 stroke=%27white%27 stroke-opacity=%270.09%27 stroke-width=%273%27/%3E%3C/svg%3E") no-repeat right -24px center / 230px auto;color:#fff;
+  background:var(--ink);color:#fff;position:relative;overflow:hidden;
   border-radius:var(--radius-l);
   padding:30px 28px;
   margin-bottom:22px;
 }
-.today-hero .eyebrow{color:#A9B4D6;font-size:0.85rem;margin-bottom:6px;}
+.today-hero .eyebrow{color:#AEB8D6;font-size:0.85rem;margin-bottom:6px;}
 .today-hero h1{font-size:1.7rem;color:#fff;margin-bottom:4px;}
 .today-meta{display:flex;gap:22px;margin-top:20px;flex-wrap:wrap;}
-.today-meta .stat-num{font-family:'Bricolage Grotesque','Be Vietnam Pro',sans-serif;font-size:2.1rem;font-weight:600;font-variant-numeric:tabular-nums;}
-.today-meta .stat-label{font-size:0.78rem;color:#A9B4D6;}
+.today-meta .stat-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:2rem;}
+.today-meta .stat-label{font-size:0.78rem;color:#AEB8D6;}
 .today-actions{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;}
-
-@media (max-width:640px){.today-hero{background-size:130px auto;background-position:right -34px top 14px;}}
 
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 @media (max-width:640px){.grid-2{grid-template-columns:1fr;}}
@@ -196,9 +187,6 @@ a.btn{text-decoration:none;}
   font-family:inherit;font-size:0.95rem;background:#fff;color:var(--ink);
 }
 .field textarea{resize:vertical;min-height:70px;}
-.field input:focus,.field select:focus,.field textarea:focus,.chat-inputbar textarea:focus{
-  outline:none;border-color:var(--focus);box-shadow:0 0 0 3px var(--focus-soft);
-}
 .likert{display:flex;gap:6px;flex-wrap:wrap;}
 .likert label{
   flex:1;min-width:80px;text-align:center;border:1px solid var(--line);border-radius:var(--radius-s);
@@ -214,21 +202,21 @@ a.btn{text-decoration:none;}
 
 /* ---------- Focus timer ---------- */
 .timer-wrap{text-align:center;padding:20px 0;}
-.timer-display{font-family:'Bricolage Grotesque','Be Vietnam Pro',sans-serif;font-size:4.2rem;font-weight:600;font-variant-numeric:tabular-nums;margin:14px 0;}
+.timer-display{font-family:'Plus Jakarta Sans',sans-serif;font-size:4.2rem;margin:14px 0;}
 .timer-ring{width:220px;height:220px;margin:0 auto;position:relative;}
 .duration-picker{display:flex;justify-content:center;gap:8px;margin-bottom:16px;}
 .duration-picker button{
-  border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 16px;
+  border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;
   font-weight:600;cursor:pointer;color:var(--ink-soft);
 }
-.duration-picker button.active{background:var(--focus);color:#fff;border-color:var(--focus);}
+.duration-picker button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
 .checklist{text-align:left;max-width:340px;margin:18px auto 0;}
 .checklist label{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;font-size:0.9rem;color:var(--ink-soft);}
 
 /* ---------- Badges ---------- */
 .badge{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;font-size:0.78rem;font-weight:700;}
 .badge-low{background:var(--focus-soft);color:var(--focus);}
-.badge-mid{background:var(--warn-soft);color:var(--warn);}
+.badge-mid{background:#DDF6FA;color:var(--accent-ink);}
 .badge-high{background:var(--risk-soft);color:var(--risk);}
 
 /* ---------- Tables ---------- */
@@ -240,34 +228,25 @@ tr:last-child td{border-bottom:none;}
 /* ---------- Login ---------- */
 .login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
 .login-card{max-width:400px;width:100%;text-align:center;}
-.login-mark{width:52px;height:58px;background:var(--focus);clip-path:polygon(50% 0%,94% 13%,94% 56%,50% 100%,6% 56%,6% 13%);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
-.login-mark span{width:17px;height:17px;border-radius:50%;background:var(--accent);margin-bottom:6px;}
+.login-mark{width:52px;height:62px;background:var(--focus);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 38'%3E%3Cpath d='M16 1 29 5.5Q30 6 30 7.5V18C30 27 24.5 33.5 16 37 7.5 33.5 2 27 2 18V7.5Q2 6 3 5.5Z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 38'%3E%3Cpath d='M16 1 29 5.5Q30 6 30 7.5V18C30 27 24.5 33.5 16 37 7.5 33.5 2 27 2 18V7.5Q2 6 3 5.5Z'/%3E%3C/svg%3E") center/contain no-repeat;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
+.login-mark span{width:20px;height:20px;border-radius:50%;background:var(--accent);margin-top:-6px;}
 .google-btn{
   display:flex;align-items:center;justify-content:center;gap:10px;
-  width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:#fff;
+  width:100%;padding:12px;border-radius:999px;border:1px solid var(--line);background:#fff;
   font-weight:600;cursor:pointer;font-size:0.95rem;margin-top:18px;
 }
 .google-btn:hover{box-shadow:var(--shadow);}
-.role-toggle,.auth-tab{
-  display:flex;gap:4px;padding:4px;
-  background:var(--bg);border:1px solid var(--line);border-radius:14px;
-  width:fit-content;max-width:100%;margin:16px auto 0;
-}
-.auth-tab{width:100%;margin:0 auto 18px;}
-.role-toggle button,.auth-tab button{
-  flex:1 1 auto;border:none;background:transparent;border-radius:10px;
-  padding:8px 16px;font-size:0.82rem;font-weight:600;color:var(--ink-soft);cursor:pointer;
-}
-.role-toggle button:hover,.auth-tab button:hover{color:var(--ink);}
-.role-toggle button.active,.auth-tab button.active{
-  background:var(--surface);color:var(--focus);font-weight:700;
-  box-shadow:0 1px 3px rgba(17,26,54,0.14);
-}
+.role-toggle{display:flex;gap:8px;margin-top:16px;justify-content:center;}
+.role-toggle button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 16px;font-size:0.82rem;font-weight:600;color:var(--ink-soft);cursor:pointer;}
+.role-toggle button.active{background:var(--focus-soft);color:var(--focus);border-color:var(--focus);}
+.auth-tab{display:flex;gap:8px;margin-bottom:18px;justify-content:center;}
+.auth-tab button{flex:1;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;font-size:0.85rem;font-weight:700;color:var(--ink-soft);cursor:pointer;}
+.auth-tab button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
 .auth-submit-btn{
-  width:100%;padding:12px;border-radius:12px;border:none;background:var(--focus);color:#fff;
-  font-weight:700;cursor:pointer;font-size:0.95rem;margin-top:6px;transition:background-color .12s ease;
+  width:100%;padding:12px;border-radius:999px;border:none;background:var(--ink);color:#fff;
+  font-weight:700;cursor:pointer;font-size:0.95rem;margin-top:6px;
 }
-.auth-submit-btn:hover{background:var(--focus-hover);box-shadow:var(--shadow);}
+.auth-submit-btn:hover{box-shadow:var(--shadow);}
 .auth-submit-btn:disabled{opacity:0.5;cursor:not-allowed;}
 .auth-link-row{margin-top:14px;font-size:0.82rem;}
 .auth-link-row button{background:none;border:none;color:var(--focus);font-weight:700;cursor:pointer;padding:0;font-size:inherit;text-decoration:underline;}
@@ -281,7 +260,7 @@ tr:last-child td{border-bottom:none;}
 .empty-state{text-align:center;padding:40px 20px;color:var(--ink-soft);}
 .toast{
   position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
-  background:var(--ink);color:#fff;padding:12px 20px;border-radius:12px;font-size:0.85rem;
+  background:var(--ink);color:#fff;padding:12px 20px;border-radius:999px;font-size:0.85rem;
   box-shadow:var(--shadow);z-index:50;opacity:0;pointer-events:none;transition:opacity .2s ease;
 }
 .toast.show{opacity:1;}
@@ -303,7 +282,7 @@ tr:last-child td{border-bottom:none;}
 .live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;}
 .live-dot.entertainment{background:var(--risk);}
 .live-dot.other{background:var(--focus);}
-.live-dot.idle{background:var(--warn);}
+.live-dot.idle{background:var(--accent);}
 .live-dot.offline{background:var(--line);}
 .live-since{color:var(--ink-soft);font-size:0.78rem;}
 
@@ -350,7 +329,7 @@ tr:last-child td{border-bottom:none;}
 }
 .adaptive-card.up{border-left-color:var(--focus);}
 .adaptive-card .eyebrow{
-  font-size:0.8rem;font-weight:700;
+  font-size:0.72rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;
   color:var(--accent-ink);margin-bottom:6px;
 }
 .adaptive-card.up .eyebrow{color:var(--focus);}
@@ -368,12 +347,17 @@ tr:last-child td{border-bottom:none;}
   padding:10px 14px;margin-top:6px;
 }
 .admin-code-row code{
-  font-family:'Be Vietnam Pro',monospace;font-weight:700;font-size:1rem;
+  font-family:'Plus Jakarta Sans',monospace;font-weight:700;font-size:1rem;
   flex:1;overflow-wrap:anywhere;
 }
 .admin-danger-btn{color:var(--risk);border-color:var(--risk-soft);flex-shrink:0;}
 .admin-danger-btn:hover{background:var(--risk-soft);}
 .admin-copy-btn{flex-shrink:0;}
 
-/* ---------- Số liệu ---------- */
-.stat-num{font-weight:600;font-variant-numeric:tabular-nums;}
+/* ---------- Mindguard: khiên mờ trang trí trên thẻ hero ---------- */
+.today-hero::after{
+  content:"";position:absolute;right:-30px;top:-10px;width:300px;height:380px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 38' fill='none' stroke='%23ffffff' stroke-opacity='.10' stroke-width='.9'%3E%3Cpath d='M16 1 29 5.5Q30 6 30 7.5V18C30 27 24.5 33.5 16 37 7.5 33.5 2 27 2 18V7.5Q2 6 3 5.5Z'/%3E%3Ccircle cx='16' cy='14' r='4.2'/%3E%3C/svg%3E") center/contain no-repeat;
+  pointer-events:none;
+}
+.today-hero > *{position:relative;z-index:1;}

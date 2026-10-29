@@ -1,7 +1,5 @@
 // Cấu hình Firebase của dự án Mindguard.
-// Lấy từ: Firebase Console > Project settings > General > Your apps > Web app.
-// Lưu ý: apiKey của Firebase Web KHÔNG phải mật khẩu — nó chỉ định danh dự án.
-// Việc bảo vệ dữ liệu phụ thuộc vào firestore.rules, không phụ thuộc vào việc giấu key này.
+// Lưu ý: apiKey của Firebase Web KHÔNG phải mật khẩu — việc bảo vệ dữ liệu nằm ở firestore.rules.
 export const firebaseConfig = {
   apiKey: "AIzaSyD6TrLmQSyHv4vGRjlJpxe2Pdg1khihaK8",
   authDomain: "mindguard-8ad13.firebaseapp.com",

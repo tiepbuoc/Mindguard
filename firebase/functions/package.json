@@ -1,6 +1,6 @@
 {
-  "name": "mindguard-functions",
-  "description": "Cloud Functions cho Mindguard — trợ lý AI cá nhân hóa (gọi LLM, giấu API key phía server)",
+  "name": "pop-ai-functions",
+  "description": "Cloud Functions cho POP-AI — trợ lý AI cá nhân hóa (gọi LLM, giấu API key phía server)",
   "engines": { "node": "20" },
   "main": "index.js",
   "type": "commonjs",

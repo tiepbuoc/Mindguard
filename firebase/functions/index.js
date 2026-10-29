@@ -1,5 +1,5 @@
 /**
- * Mindguard Cloud Functions
+ * POP-AI Cloud Functions
  * ----------------------
  * Trợ lý AI THẬT cho học sinh: đọc dữ liệu kế hoạch + nhật ký + tự đánh giá
  * của đúng học sinh đang gọi (context.auth.uid), ghép thành ngữ cảnh, rồi
@@ -18,8 +18,8 @@ const admin = require("firebase-admin");
 admin.initializeApp();
 const db = admin.firestore();
 
-// ---- Secret: đặt bằng `firebase functions:secrets:set MINDGUARD_API_KEY` ----
-const MINDGUARD_API_KEY = defineSecret("MINDGUARD_API_KEY");
+// ---- Secret: đặt bằng `firebase functions:secrets:set POPAI_API_KEY` ----
+const POPAI_API_KEY = defineSecret("POPAI_API_KEY");
 
 // Cấu hình endpoint/model — có thể đổi nếu bạn dùng nhà cung cấp khác,
 // miễn là API tương thích chuẩn OpenAI Chat Completions.
@@ -104,8 +104,8 @@ async function buildStudentContext(uid) {
   return parts.join("\n");
 }
 
-const SYSTEM_PROMPT = `Bạn là "Trợ lý Mindguard" — một người hướng dẫn đồng hành thân thiện cho học sinh THPT/THCS
-trong chương trình Mindguard (mô hình 3 giai đoạn Prevent - Optimize - Perform), giúp các em giảm thói quen xem video ngắn
+const SYSTEM_PROMPT = `Bạn là "Trợ lý POP-AI" — một người hướng dẫn đồng hành thân thiện cho học sinh THPT/THCS
+trong chương trình POP-AI (Prevent - Optimize - Perform), giúp các em giảm thói quen xem video ngắn
 (TikTok/Shorts/Reels) và rèn khả năng tập trung học tập.
 
 Nguyên tắc trả lời:
@@ -121,7 +121,7 @@ Nguyên tắc trả lời:
 - Không đưa ra chẩn đoán y khoa/tâm lý. Đây là công cụ giáo dục, không thay thế chuyên gia.
 - Trả lời bằng tiếng Việt, độ dài khoảng 3-6 câu trừ khi học sinh yêu cầu chi tiết hơn.`;
 
-exports.askMindguard = onCall({ secrets: [MINDGUARD_API_KEY], cors: true }, async (request) => {
+exports.askPopAI = onCall({ secrets: [POPAI_API_KEY], cors: true }, async (request) => {
   if (!request.auth) {
     throw new HttpsError("unauthenticated", "Cần đăng nhập để dùng trợ lý AI.");
   }
@@ -164,13 +164,13 @@ exports.askMindguard = onCall({ secrets: [MINDGUARD_API_KEY], cors: true }, asyn
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${MINDGUARD_API_KEY.value()}`
+        Authorization: `Bearer ${POPAI_API_KEY.value()}`
       },
       body: JSON.stringify({ model: MODEL, messages, temperature: 0.7, max_tokens: 500 })
     });
     if (!res.ok) {
       const errText = await res.text().catch(() => "");
-      logger.error("Mindguard LLM lỗi HTTP", res.status, errText);
+      logger.error("POP-AI LLM lỗi HTTP", res.status, errText);
       throw new HttpsError("internal", "Trợ lý AI đang gặp sự cố, thử lại sau ít phút nhé.");
     }
     const data = await res.json();
@@ -178,7 +178,7 @@ exports.askMindguard = onCall({ secrets: [MINDGUARD_API_KEY], cors: true }, asyn
     if (!replyText) throw new Error("empty completion");
   } catch (e) {
     if (e instanceof HttpsError) throw e;
-    logger.error("Mindguard LLM exception", e);
+    logger.error("POP-AI LLM exception", e);
     throw new HttpsError("internal", "Trợ lý AI đang gặp sự cố, thử lại sau ít phút nhé.");
   }
 

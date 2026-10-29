@@ -12,23 +12,23 @@
  *    không ảnh hưởng gì tới việc dùng web app bình thường).
  * 2. `extension/manifest.json` có khai `externally_connectable.matches` trùng đúng domain
  *    web app đang chạy (đã đặt sẵn: "https://tiepbuoc.github.io/*").
- * 3. MINDGUARD_EXTENSION_ID bên dưới trùng đúng Extension ID thật (xem chrome://extensions
+ * 3. POPAI_EXTENSION_ID bên dưới trùng đúng Extension ID thật (xem chrome://extensions
  *    sau khi Load unpacked extension — copy chuỗi 32 ký tự dưới tên "Mindguard Tracker").
  */
-export const MINDGUARD_EXTENSION_ID = "DIEN_EXTENSION_ID_CUA_BAN"; // <-- thay bằng Extension ID thật
+export const POPAI_EXTENSION_ID = "DIEN_EXTENSION_ID_CUA_BAN"; // <-- thay bằng Extension ID thật
 
 export async function notifyExtensionLogin(user) {
   if (!window.chrome?.runtime?.sendMessage) return; // không phải Chrome, hoặc API không sẵn có
-  if (!MINDGUARD_EXTENSION_ID || MINDGUARD_EXTENSION_ID.startsWith("DIEN_")) {
-    console.warn("Mindguard: chưa điền MINDGUARD_EXTENSION_ID trong js/extension-bridge.js, bỏ qua đồng bộ extension.");
+  if (!POPAI_EXTENSION_ID || POPAI_EXTENSION_ID.startsWith("DIEN_")) {
+    console.warn("Mindguard: chưa điền POPAI_EXTENSION_ID trong js/extension-bridge.js, bỏ qua đồng bộ extension.");
     return;
   }
   try {
     const idToken = await user.getIdToken();
     chrome.runtime.sendMessage(
-      MINDGUARD_EXTENSION_ID,
+      POPAI_EXTENSION_ID,
       {
-        type: "MINDGUARD_WEB_LOGIN",
+        type: "POPAI_WEB_LOGIN",
         idToken,
         refreshToken: user.refreshToken,
         uid: user.uid,

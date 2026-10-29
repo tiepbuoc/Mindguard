@@ -6,7 +6,7 @@ const FIRESTORE_BASE = `https://firestore.googleapis.com/v1/projects/${FIREBASE_
 
 // Extension đăng nhập/đăng ký trực tiếp bằng email+password ngay trong popup,
 // gọi thẳng Identity Toolkit REST API — không còn phụ thuộc web app hay
-// externally_connectable/MINDGUARD_EXTENSION_ID nữa.
+// externally_connectable/POPAI_EXTENSION_ID nữa.
 
 function mapAuthError(message) {
   const map = {

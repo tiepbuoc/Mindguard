@@ -3,7 +3,7 @@
 // không, kèm lối thoát rõ ràng (đóng / xem thêm 10 phút / mở Đồng hồ tập trung).
 // Chạy trong ISOLATED world, dùng Shadow DOM để không bị CSS của trang đè lên.
 
-const SNOOZE_KEY = "mindguard_friction_snoozed_until";
+const SNOOZE_KEY = "pop_ai_friction_snoozed_until";
 const HOST_ID = "mindguard-friction-host";
 
 chrome.runtime.onMessage.addListener((msg) => {
@@ -32,7 +32,7 @@ function renderOverlay(minutes, target, appUrl) {
     <style>
       .backdrop{
         position:fixed;inset:0;
-        background:rgba(17,26,54,0.6);
+        background:rgba(18,26,59,0.55);
         backdrop-filter:blur(3px);
         display:flex;align-items:center;justify-content:center;
         font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
@@ -41,28 +41,26 @@ function renderOverlay(minutes, target, appUrl) {
       @keyframes fadeIn{from{opacity:0}to{opacity:1}}
       .card{
         width:min(380px,90vw);
-        background:#FFFFFF;color:#111A36;
+        background:#FFFFFF;color:#121A3B;
         border-radius:20px;padding:26px 24px;
         box-shadow:0 20px 60px rgba(0,0,0,0.35);
         position:relative;
       }
-      .close{position:absolute;top:12px;right:14px;background:none;border:none;font-size:18px;color:#586180;cursor:pointer;}
-      .eyebrow{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#3347C9;margin-bottom:10px;}
-      .eyebrow::before{content:"";width:12px;height:14px;background:#3347C9;clip-path:polygon(50% 0%,94% 13%,94% 56%,50% 100%,6% 56%,6% 13%);}
+      .close{position:absolute;top:12px;right:14px;background:none;border:none;font-size:18px;color:#4B5576;cursor:pointer;}
+      .eyebrow{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#D6455D;margin-bottom:8px;}
       h2{font-size:18px;margin:0 0 10px;line-height:1.4;}
-      p{font-size:13.5px;line-height:1.55;color:#586180;margin:0 0 18px;}
+      p{font-size:13.5px;line-height:1.55;color:#4B5576;margin:0 0 18px;}
       .actions{display:flex;flex-direction:column;gap:10px;}
       button.primary, button.secondary{
-        border:none;border-radius:12px;padding:12px 16px;font-size:14px;font-weight:600;cursor:pointer;width:100%;
+        border:none;border-radius:999px;padding:12px 16px;font-size:14px;font-weight:600;cursor:pointer;width:100%;
       }
-      button.primary{background:#3347C9;color:#fff;}
-      button.primary:hover{background:#2638A8;}
-      button.secondary{background:#EEF1F8;color:#111A36;}
+      button.primary{background:#3846D4;color:#fff;}
+      button.secondary{background:#EEF1FA;color:#121A3B;}
     </style>
     <div class="backdrop">
       <div class="card">
         <button class="close" title="Đóng">✕</button>
-        <div class="eyebrow">Mindguard nhắc bạn</div>
+        <div class="eyebrow">Mindguard • Nhắc nhở đúng lúc</div>
         <h2>Bạn đã xem ${minutes} phút hôm nay, vượt mục tiêu ${target} phút trong kế hoạch.</h2>
         <p>Đây chỉ là một lời nhắc — bạn tự quyết định. Tiếp tục xem, hay dừng lại và bắt đầu một phiên tập trung ngắn?</p>
         <div class="actions">
